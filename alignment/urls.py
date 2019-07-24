@@ -5,6 +5,7 @@ from django.views.decorators.cache import cache_page
 from alignment import views
 
 
+
 urlpatterns = [
     url(r'^targetselection', (views.TargetSelection.as_view()), name='targetselection'),
     url(r'^gproteinselection', (views.TargetSelectionGprotein.as_view()), name='targetselectiongprot'),

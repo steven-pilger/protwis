@@ -14,6 +14,12 @@ class Residue(models.Model):
     def __str__(self):
         return self.amino_acid + str(self.sequence_number)
 
+    def short_display_generic_number(self):
+        if self.display_generic_number:
+            return '%sx%s' % (self.display_generic_number.label.split(".")[0], self.display_generic_number.label.split("x")[1])
+        else:
+            return None
+
     class Meta():
         db_table = 'residue'
         ordering = ['sequence_number']
@@ -90,6 +96,8 @@ class ResidueGenericNumberEquivalent(models.Model):
 class ResiduePositionSet(models.Model):
     residue_position = models.ManyToManyField('ResidueGenericNumberEquivalent')
     name = models.CharField(max_length=50)
+    set_type = models.CharField(max_length=100)
+    protein_group = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
